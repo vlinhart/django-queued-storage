@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 import queued_storage
 
 setup(
-    name='django-queued-storage',
+    name='django-queued-storage-fork',
     version=queued_storage.__version__,
-    description='Provides a proxy for django file storage, that allows you to upload files locally and eventually serve them remotely',
+    description='Allows for files to be uploaded locally and then transferred to a remote location. This is a fork because the original is not online.',
     long_description = open('README.rst').read(),
-    author='Sean Brant, Josh VanderLinden',
-    author_email='codekoala@gmail.com',
+    author='Alen Mujezinovic',
+    author_email='alen@caffeinehit.com',
     packages=find_packages(),
     classifiers=[
         'Programming Language :: Python',
