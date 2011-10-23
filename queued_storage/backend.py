@@ -51,12 +51,17 @@ class QueuedRemoteStorage(object):
         cache_result = cache.get(self.get_cache_key(name))
 
         if cache_result:
+#            print 'return remote'
             return self.remote
-        elif cache_result is None and self.remote.exists(name):
-            cache.set(self.get_cache_key(name), True)
-            return self.remote
-
-        return self.local
+        elif self.local.exists(name):
+#            print 'return local'
+            return self.local
+#        elif cache_result is None and self.remote.exists(name):
+#            cache.set(self.get_cache_key(name), True)
+#            print 'remote'
+#            return self.remote
+#        print 'return remote'
+        return self.remote
 
     def get_cache_key(self, name):
         return '%s%s' % (self.cache_prefix, urllib.quote(name))
