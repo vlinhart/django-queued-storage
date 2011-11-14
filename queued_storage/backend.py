@@ -5,6 +5,7 @@ from queued_storage.tasks import Transfer
 import urllib
 
 CACHE_PREFIX = getattr(settings, 'QUEUED_STORAGE_CACHE_KEY', 'queued_remote_storage_')
+FORCE_LOCAL_STORAGE = getattr(settings, 'FORCE_LOCAL_STORAGE', False)
 
 class QueuedRemoteStorage(object):
 
@@ -53,7 +54,7 @@ class QueuedRemoteStorage(object):
         if cache_result:
 #            print 'return remote'
             return self.remote
-        elif self.local.exists(name):
+        elif self.local.exists(name) or FORCE_LOCAL_STORAGE:
 #            print 'return local'
             return self.local
 #        elif cache_result is None and self.remote.exists(name):
